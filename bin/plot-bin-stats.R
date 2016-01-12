@@ -3,8 +3,8 @@ library(ggplot2)
 
 boundaries.dir <- "data/boundaries/"
 
-par1_id <- "M82"
-par2_id <- "PEN"
+par1 <- "M82"
+par2 <- "PEN"
 
 
 # Accumulate counts and lengths data for introgressions
@@ -25,9 +25,9 @@ for (filename in filelist) {
   df$length <- df$end - df$start + 1
 
   counts <- count(df, "genotype")
-  par1_counts <- max(counts$freq[counts$genotype == par1_id], 0)
+  par1_counts <- max(counts$freq[counts$genotype == par1], 0)
   het_counts  <- max(counts$freq[counts$genotype == "HET"], 0)
-  par2_counts <- max(counts$freq[counts$genotype == par2_id], 0)
+  par2_counts <- max(counts$freq[counts$genotype == par2], 0)
 
   counts.df <- rbind(counts.df, data.frame(id = id,
                                            par1 = par1_counts,
@@ -35,9 +35,9 @@ for (filename in filelist) {
                                            par2 = par2_counts))
 
   lengths <- aggregate(length ~ genotype, data = df, sum)
-  par1_lengths <- max(lengths$length[lengths$genotype == par1_id], 0)
+  par1_lengths <- max(lengths$length[lengths$genotype == par1], 0)
   het_lengths  <- max(lengths$length[lengths$genotype == "HET"], 0)
-  par2_lengths <- max(lengths$length[lengths$genotype == par2_id], 0)
+  par2_lengths <- max(lengths$length[lengths$genotype == par2], 0)
 
   lengths.df <- rbind(lengths.df, data.frame(id = id,
                                              par1 = par1_lengths,
@@ -79,9 +79,9 @@ ggsave("figures/percent-pennelli.png", width = 5, height = 7.5)
 bin.geno.file <- "data/bins/bin-genotypes.BILs.2014-12-07.imputed-NAs.merged-like"
 bin.geno.df <- read.table(bin.geno.file, header = TRUE, sep = "\t")
 
-bin.geno.df$par1 <- apply(bin.geno.df, 1, function(line) sum(line == par1_id))
+bin.geno.df$par1 <- apply(bin.geno.df, 1, function(line) sum(line == par1))
 bin.geno.df$het <- apply(bin.geno.df, 1, function(line) sum(line == "HET"))
-bin.geno.df$par2 <- apply(bin.geno.df, 1, function(line) sum(line == par2_id))
+bin.geno.df$par2 <- apply(bin.geno.df, 1, function(line) sum(line == par2))
 
 # added due to broken feature in ggplot 0.9.1:
 # is it still broken/required?
@@ -124,9 +124,9 @@ ggsave("figures/distribution-of-introgressions.physical.png",
 bin.geno.file <- "data/bins/bin-genotypes.BILs.2014-12-07.imputed-NAs.merged-like.genetic-distance"
 bin.geno.df <- read.table(bin.geno.file, header = TRUE, sep = "\t")
 
-bin.geno.df$par1 <- apply(bin.geno.df, 1, function(line) sum(line == par1_id))
+bin.geno.df$par1 <- apply(bin.geno.df, 1, function(line) sum(line == par1))
 bin.geno.df$het <- apply(bin.geno.df, 1, function(line) sum(line == "HET"))
-bin.geno.df$par2 <- apply(bin.geno.df, 1, function(line) sum(line == par2_id))
+bin.geno.df$par2 <- apply(bin.geno.df, 1, function(line) sum(line == par2))
 
 offset <- 1.05
 max_count <-  max(bin.geno.df$het + bin.geno.df$par2)
