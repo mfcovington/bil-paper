@@ -75,7 +75,7 @@ ggplot(data = lengths.df) +
 ggsave("figures/percent-pennelli.png", width = 5, height = 7.5)
 
 
-# Plot distribution of introgressions across bins
+# Plot distribution of introgressions across bins (physical distance)
 bin.geno.file <- "data/bins/bin-genotypes.BILs.2014-12-07.imputed-NAs.merged-like"
 bin.geno.df <- read.table(bin.geno.file, header = TRUE, sep = "\t")
 
@@ -116,4 +116,39 @@ ggplot(bin.geno.df, aes(xmin = bin.start, xmax = bin.end)) +
   ) +
   theme(strip.text.y = element_text(size = 5))
 
-ggsave("figures/distribution-of-introgressions.png", width = 7.5, height = 10)
+ggsave("figures/distribution-of-introgressions.physical.png",
+       width = 7.5, height = 10)
+
+
+# Plot distribution of introgressions across bins (genetic distance)
+bin.geno.file <- "data/bins/bin-genotypes.BILs.2014-12-07.imputed-NAs.merged-like.genetic-distance"
+bin.geno.df <- read.table(bin.geno.file, header = TRUE, sep = "\t")
+
+bin.geno.df$par1 <- apply(bin.geno.df, 1, function(line) sum(line == par1_id))
+bin.geno.df$het <- apply(bin.geno.df, 1, function(line) sum(line == "HET"))
+bin.geno.df$par2 <- apply(bin.geno.df, 1, function(line) sum(line == par2_id))
+
+offset <- 1.05
+max_count <-  max(bin.geno.df$het + bin.geno.df$par2)
+max_lab <- (max_count %/% 10) * 10
+
+ggplot(bin.geno.df, aes(xmin = bin.start, xmax = bin.end)) +
+  geom_rect(aes(ymin = 0, ymax = par2), fill = 'green') +
+  geom_rect(aes(ymin = par2, ymax = het + par2), fill = 'black') +
+  facet_grid(chr ~ .) +
+  theme(
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_blank()
+  ) +
+  ggtitle('Distribution of Introgressions Across Bins') +
+  xlab('Bin position on chromosome (cM)') +
+  scale_y_continuous(
+    '# of BILs with introgression',
+    breaks = c(0, max_lab / 2, max_lab),
+    labels = c(0, max_lab / 2, max_lab),
+    limits = c(0, offset * max_count)
+  ) +
+  theme(strip.text.y = element_text(size = 5))
+
+ggsave("figures/distribution-of-introgressions.genetic.png",
+       width = 7.5, height = 10)
