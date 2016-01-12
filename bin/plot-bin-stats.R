@@ -75,20 +75,13 @@ ggplot(data = lengths.df) +
 ggsave("figures/percent-pennelli.png", width = 5, height = 7.5)
 
 
-#####
-
+# Plot distribution of introgressions across bins
 bin.geno.file <- "data/bins/bin-genotypes.BILs.2014-12-07.imputed-NAs.merged-like"
 bin.geno.df <- read.table(bin.geno.file, header = TRUE, sep = "\t")
 
 bin.geno.df$par1 <- apply(bin.geno.df, 1, function(line) sum(line == par1_id))
 bin.geno.df$het <- apply(bin.geno.df, 1, function(line) sum(line == "HET"))
 bin.geno.df$par2 <- apply(bin.geno.df, 1, function(line) sum(line == par2_id))
-
-ggplot(bin.geno.df, aes(xmin = bin.start, xmax = bin.end),) +
-  geom_rect(aes(ymin = 0, ymax = par2), fill = 'green') +
-  geom_rect(aes(ymin = par2, ymax = het + par2), fill = 'black') +
-  facet_grid(chr ~ .)
-
 
 # added due to broken feature in ggplot 0.9.1:
 # is it still broken/required?
@@ -101,11 +94,7 @@ offset <- 1.05
 max_count <-  max(bin.geno.df$het + bin.geno.df$par2)
 max_lab <- (max_count %/% 10) * 10
 
-# THIS ONE?
-ggplot(bin.geno.df, aes(xmin = bin.start, xmax = bin.end),) +
-  # geom_rect(aes(ymin = par2 + het, ymax = max_count), fill = 'magenta') +
-  # geom_rect(aes(ymin = par2 + 5, ymax = het + par2 + 5), fill = 'black') +
-  # geom_rect(aes(ymin = 0, ymax = het + par2), fill = 'black') +
+ggplot(bin.geno.df, aes(xmin = bin.start, xmax = bin.end)) +
   geom_rect(aes(ymin = 0, ymax = par2), fill = 'green') +
   geom_rect(aes(ymin = par2, ymax = het + par2), fill = 'black') +
   facet_grid(chr ~ .) +
@@ -126,4 +115,5 @@ ggplot(bin.geno.df, aes(xmin = bin.start, xmax = bin.end),) +
     limits = c(0, offset * max_count)
   ) +
   theme(strip.text.y = element_text(size = 5))
-  # theme(strip.text.y = element_text(size = 5, angle = 90))
+
+ggsave("figures/distribution-of-introgressions.png", width = 7.5, height = 10)
