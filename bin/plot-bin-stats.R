@@ -1,21 +1,26 @@
+library(plyr)
+library(ggplot2)
+
 boundaries.dir <- "data/boundaries/"
 
 par1_id <- "M82"
 par2_id <- "PEN"
 
-library(plyr)
-library(ggplot2)
 
-counts.df <- data.frame(id=character(), par1=integer(), het=integer(), par2=integer())
-lengths.df <- data.frame(id=character(), par1=integer(), het=integer(), par2=integer())
+# Accumulate counts and lengths data for introgressions
+counts.df <- data.frame(id = character(),
+                        par1 = integer(),
+                        het = integer(),
+                        par2 = integer())
+lengths.df <- counts.df
 
-filelist <- list.files(boundaries.dir, pattern=".+\\.boundaries")
+filelist <- list.files(boundaries.dir, pattern = ".+\\.boundaries")
 
 for (filename in filelist) {
   id <- sub("(^.+)\\.boundaries$", "\\1", filename)
 
   df <- read.table(paste0(boundaries.dir, filename),
-                   colClasses=c("factor", rep("numeric", 2), "factor"))
+                   colClasses = c("factor", rep("numeric", 2), "factor"))
   colnames(df) <- c("chr", "start", "end", "genotype")
   df$length <- df$end - df$start + 1
 
@@ -24,83 +29,38 @@ for (filename in filelist) {
   het_counts  <- max(counts$freq[counts$genotype == "HET"], 0)
   par2_counts <- max(counts$freq[counts$genotype == par2_id], 0)
 
-  counts.df <- rbind(counts.df, data.frame(id=id,
-                                           par1=par1_counts,
-                                           het=het_counts,
-                                           par2=par2_counts))
+  counts.df <- rbind(counts.df, data.frame(id = id,
+                                           par1 = par1_counts,
+                                           het = het_counts,
+                                           par2 = par2_counts))
 
   lengths <- aggregate(length ~ genotype, data = df, sum)
   par1_lengths <- max(lengths$length[lengths$genotype == par1_id], 0)
   het_lengths  <- max(lengths$length[lengths$genotype == "HET"], 0)
   par2_lengths <- max(lengths$length[lengths$genotype == par2_id], 0)
 
-  lengths.df <- rbind(lengths.df, data.frame(id=id,
-                                             par1=par1_lengths,
-                                             het=het_lengths,
-                                             par2=par2_lengths))
+  lengths.df <- rbind(lengths.df, data.frame(id = id,
+                                             par1 = par1_lengths,
+                                             het = het_lengths,
+                                             par2 = par2_lengths))
 }
 
 
-max.counts <- max(counts.df[,2:4])
-ggplot(data=counts.df) +
-  geom_histogram(aes(x = par1), color = "magenta", fill = NA, binwidth = 1, origin=-0.5) +
-  geom_histogram(aes(x = par2), color = "green", fill = NA, binwidth = 1, origin=-0.5) +
-  geom_histogram(aes(x = het), color = "black", fill = NA, binwidth = 1, origin=-0.5) +
-  xlim(-0.5, max.counts + 0.5) +
-  xlab("# of blocks of genotype per sample")
-
-
-
-max.count.introgression <- max(counts.df[,3:4])
-ggplot(data=counts.df) +
-  geom_histogram(aes(x = par2), color = "green", fill = NA, binwidth = 1, origin=-0.5) +
-  geom_histogram(aes(x = het), color = "black", fill = NA, binwidth = 1, origin=-0.5) +
-  xlim(-0.5, max.count.introgression + 0.5) +
-  xlab("# of introgressions per sample")
-
-ggplot(data=counts.df) +
-  geom_histogram(aes(x = par2), binwidth = 1, origin=-0.5) +
-  xlim(-0.5, max.count.introgression + 0.5) +
-  xlab("# of introgressions per sample")
-
+# Plot number of introgressions per sample
 max.count.introgression.combined <- max(counts.df$het + counts.df$par2)
-ggplot(data=counts.df) +
-  geom_histogram(aes(x = het + par2), binwidth = 1, origin=-0.5) +
-  xlim(-0.5, max.count.introgression.combined + 0.5) +
-  xlab("# of introgressions per sample")
 
-ggplot(data=counts.df) +
-  geom_histogram(aes(x = het + par2), binwidth = 1, origin=0.5) +
+ggplot(data = counts.df) +
+  geom_histogram(aes(x = het + par2),
+                 binwidth = 1,
+                 origin = 0.5,
+                 color = 'black',
+                 fill = 'skyblue') +
   xlim(0, max.count.introgression.combined + 0.5) +
   xlab("# of introgressions per sample") +
   ylab("# of BILs")
 
-# THIS ONE?
-ggplot(data=counts.df) +
-  geom_histogram(aes(x = het + par2), binwidth = 1, origin=0.5, color = 'black', fill = 'skyblue') +
-  xlim(0, max.count.introgression.combined + 0.5) +
-  xlab("# of introgressions per sample") +
-  ylab("# of BILs")
+ggsave("figures/introgressions-per-sample.png", width = 5, height = 7.5)
 
-# WITHOUT HET
-ggplot(data=counts.df) +
-  geom_histogram(aes(x = par2), binwidth = 1, origin=0.5, color = 'black', fill = 'skyblue') +
-  xlim(0, max.count.introgression + 0.5) +
-  xlab("# of introgressions per sample") +
-  ylab("# of BILs")
-
-ggplot(data=counts.df) +
-  geom_histogram(aes(x = par1), color = "magenta", fill = NA, binwidth = 1) +
-  geom_histogram(aes(x = par2), color = "green", fill = NA, binwidth = 1) +
-  geom_histogram(aes(x = het), color = "black", fill = NA, binwidth = 1) +
-  scale_x_discrete('# of Introgressions')
-
-ggplot(data=counts.df) +
-  geom_histogram(aes(x = par1), color = "magenta", fill = NA, binwidth = 1, origin=-0.5) +
-  geom_histogram(aes(x = par2), color = "green", fill = NA, binwidth = 1, origin=-0.5) +
-  geom_histogram(aes(x = het), color = "black", fill = NA, binwidth = 1, origin=-0.5) +
-  scale_x_discrete() +
-  theme_blank()
 
 ggplot(data=lengths.df) +
   geom_density(aes(x = par1)) +
