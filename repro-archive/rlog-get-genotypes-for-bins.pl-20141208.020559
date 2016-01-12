@@ -1,0 +1,108 @@
+---
+- COMMAND: get-genotypes-for-bins.pl bin-genotypes.BILs.2014-12-07 bins.tsv BIL_003.boundaries BIL_005.boundaries BIL_008.boundaries BIL_009.boundaries BIL_012.boundaries BIL_013.boundaries BIL_014.boundaries BIL_015.boundaries BIL_016.boundaries BIL_017.boundaries BIL_018.boundaries BIL_019.boundaries BIL_020.boundaries BIL_021.boundaries BIL_022.boundaries BIL_023.boundaries BIL_024.boundaries BIL_025.boundaries BIL_026.boundaries BIL_027.boundaries BIL_028.boundaries BIL_029.boundaries BIL_030.boundaries BIL_031.boundaries BIL_032.boundaries BIL_033.boundaries BIL_034.boundaries BIL_035.boundaries BIL_037.boundaries BIL_038.boundaries BIL_039.boundaries BIL_040.boundaries BIL_041.boundaries BIL_042.boundaries BIL_043.boundaries BIL_044.boundaries BIL_045.boundaries BIL_046.boundaries BIL_047.boundaries BIL_048.boundaries BIL_049.boundaries BIL_050.boundaries BIL_051.boundaries BIL_052.boundaries BIL_053.boundaries BIL_054.boundaries BIL_055.boundaries BIL_056.boundaries BIL_057.boundaries BIL_058.boundaries BIL_059.boundaries BIL_060.boundaries BIL_061.boundaries BIL_062.boundaries BIL_063.boundaries BIL_064.boundaries BIL_065.boundaries BIL_066.boundaries BIL_067.boundaries BIL_068.boundaries BIL_070.boundaries BIL_071.boundaries BIL_075.boundaries BIL_080.boundaries BIL_081.boundaries BIL_082.boundaries BIL_083.boundaries BIL_085.boundaries BIL_086.boundaries BIL_087.boundaries BIL_088.boundaries BIL_089.boundaries BIL_090.boundaries BIL_091.boundaries BIL_092.boundaries BIL_093.boundaries BIL_094.boundaries BIL_095.boundaries BIL_097.boundaries BIL_098.boundaries BIL_099.boundaries BIL_100.boundaries BIL_101.boundaries BIL_102.boundaries BIL_103.boundaries BIL_104.boundaries BIL_105.boundaries BIL_106.boundaries BIL_107.boundaries BIL_109.boundaries BIL_110.boundaries BIL_112.boundaries BIL_113.boundaries BIL_115.boundaries BIL_116.boundaries BIL_117.boundaries BIL_119.boundaries BIL_120.boundaries BIL_122.boundaries BIL_123.boundaries BIL_124.boundaries BIL_125.boundaries BIL_126.boundaries BIL_127.boundaries BIL_128.boundaries BIL_129.boundaries BIL_131.boundaries BIL_132.boundaries BIL_133.boundaries BIL_134.boundaries BIL_135.boundaries BIL_136.boundaries BIL_137.boundaries BIL_138.boundaries BIL_139.boundaries BIL_140.boundaries BIL_142.boundaries BIL_144.boundaries BIL_145.boundaries BIL_146.boundaries BIL_147.boundaries BIL_148.boundaries BIL_149.boundaries BIL_150.boundaries BIL_152.boundaries BIL_153.boundaries BIL_154.boundaries BIL_155.boundaries BIL_156.boundaries BIL_157.boundaries BIL_158.boundaries BIL_159.boundaries BIL_163.boundaries BIL_164.boundaries BIL_165.boundaries BIL_167.boundaries BIL_169.boundaries BIL_170.boundaries BIL_171.boundaries BIL_172.boundaries BIL_173.boundaries BIL_174.boundaries BIL_175.boundaries BIL_176.boundaries BIL_177.boundaries BIL_178.boundaries BIL_179.boundaries BIL_180.boundaries BIL_181.boundaries BIL_182.boundaries BIL_183.boundaries BIL_184.boundaries BIL_185.boundaries BIL_186.boundaries BIL_187.boundaries BIL_188.boundaries BIL_189.boundaries BIL_190.boundaries BIL_191.boundaries BIL_194.boundaries BIL_195.boundaries BIL_197.boundaries BIL_198.boundaries BIL_201.boundaries BIL_202.boundaries BIL_203.boundaries BIL_205.boundaries BIL_206.boundaries BIL_207.boundaries BIL_210.boundaries BIL_211.boundaries BIL_212.boundaries BIL_213.boundaries BIL_214.boundaries BIL_215.boundaries BIL_216.boundaries BIL_217.boundaries BIL_218.boundaries BIL_219.boundaries BIL_220.boundaries BIL_221.boundaries BIL_223.boundaries BIL_224.boundaries BIL_226.boundaries BIL_227.boundaries BIL_228.boundaries BIL_229.boundaries BIL_230.boundaries BIL_232.boundaries BIL_233.boundaries BIL_234.boundaries BIL_235.boundaries BIL_236.boundaries BIL_237.boundaries BIL_238.boundaries BIL_239.boundaries BIL_240.boundaries BIL_241.boundaries BIL_242.boundaries BIL_243.boundaries BIL_244.boundaries BIL_245.boundaries BIL_247.boundaries BIL_248.boundaries BIL_251.boundaries BIL_252.boundaries BIL_254.boundaries BIL_255.boundaries BIL_256.boundaries BIL_258.boundaries BIL_259.boundaries BIL_260.boundaries BIL_262.boundaries BIL_263.boundaries BIL_265.boundaries BIL_266.boundaries BIL_267.boundaries BIL_269.boundaries BIL_274.boundaries BIL_275.boundaries BIL_276.boundaries BIL_277.boundaries BIL_278.boundaries BIL_279.boundaries BIL_280.boundaries BIL_281.boundaries BIL_283.boundaries BIL_284.boundaries BIL_289.boundaries BIL_290.boundaries BIL_291.boundaries BIL_294.boundaries BIL_296.boundaries BIL_297.boundaries BIL_298.boundaries BIL_299.boundaries BIL_300.boundaries BIL_301.boundaries BIL_303.boundaries BIL_304.boundaries BIL_305.boundaries BIL_306.boundaries BIL_307.boundaries BIL_308.boundaries BIL_309.boundaries BIL_310.boundaries BIL_312.boundaries BIL_313.boundaries BIL_314.boundaries BIL_316.boundaries BIL_317.boundaries BIL_318.boundaries BIL_321.boundaries BIL_322.boundaries BIL_324.boundaries BIL_325.boundaries BIL_326.boundaries BIL_327.boundaries BIL_328.boundaries BIL_330.boundaries BIL_331.boundaries BIL_332.boundaries BIL_333.boundaries BIL_334.boundaries BIL_335.boundaries BIL_336.boundaries BIL_337.boundaries BIL_338.boundaries BIL_341.boundaries BIL_342.boundaries BIL_343.boundaries BIL_345.boundaries BIL_347.boundaries BIL_348.boundaries BIL_349.boundaries BIL_350.boundaries BIL_351.boundaries BIL_352.boundaries BIL_353.boundaries BIL_354.boundaries BIL_355.boundaries BIL_356.boundaries BIL_357.boundaries BIL_359.boundaries BIL_360.boundaries BIL_361.boundaries BIL_362.boundaries BIL_363.boundaries BIL_364.boundaries BIL_365.boundaries BIL_366.boundaries BIL_367.boundaries BIL_368.boundaries BIL_370.boundaries BIL_371.boundaries BIL_373.boundaries BIL_375.boundaries BIL_376.boundaries BIL_377.boundaries BIL_378.boundaries BIL_379.boundaries BIL_380.boundaries BIL_383.boundaries BIL_384.boundaries BIL_385.boundaries BIL_386.boundaries BIL_387.boundaries BIL_388.boundaries BIL_389.boundaries BIL_390.boundaries BIL_391.boundaries BIL_392.boundaries BIL_394.boundaries BIL_396.boundaries BIL_397.boundaries BIL_398.boundaries BIL_399.boundaries BIL_400.boundaries BIL_401.boundaries BIL_403.boundaries BIL_404.boundaries BIL_405.boundaries BIL_406.boundaries BIL_407.boundaries BIL_408.boundaries BIL_409.boundaries BIL_410.boundaries BIL_411.boundaries BIL_412.boundaries BIL_413.boundaries BIL_414.boundaries BIL_415.boundaries BIL_416.boundaries BIL_417.boundaries BIL_418.boundaries BIL_419.boundaries BIL_420.boundaries BIL_421.boundaries BIL_422.boundaries BIL_425.boundaries BIL_426.boundaries BIL_429.boundaries BIL_430.boundaries BIL_431.boundaries BIL_432.boundaries BIL_433.boundaries BIL_435.boundaries BIL_436.boundaries BIL_437.boundaries BIL_438.boundaries BIL_439.boundaries BIL_440.boundaries BIL_442.boundaries BIL_443.boundaries BIL_444.boundaries BIL_445.boundaries BIL_446.boundaries BIL_447.boundaries BIL_448.boundaries BIL_449.boundaries BIL_450.boundaries BIL_452.boundaries BIL_453.boundaries BIL_454.boundaries BIL_455.boundaries BIL_456.boundaries BIL_458.boundaries BIL_459.boundaries BIL_460.boundaries BIL_461.boundaries BIL_462.boundaries BIL_465.boundaries BIL_466.boundaries BIL_467.boundaries BIL_468.boundaries BIL_470.boundaries BIL_471.boundaries BIL_473.boundaries BIL_474.boundaries BIL_475.boundaries BIL_476.boundaries BIL_477.boundaries BIL_480.boundaries BIL_481.boundaries BIL_483.boundaries BIL_484.boundaries BIL_485.boundaries BIL_486.boundaries BIL_488.boundaries BIL_489.boundaries BIL_490.boundaries BIL_491.boundaries BIL_492.boundaries BIL_493.boundaries BIL_494.boundaries BIL_495.boundaries BIL_496.boundaries BIL_497.boundaries BIL_498.boundaries BIL_499.boundaries BIL_500.boundaries BIL_501.boundaries BIL_502.boundaries BIL_503.boundaries BIL_504.boundaries BIL_505.boundaries BIL_506.boundaries BIL_508.boundaries BIL_509.boundaries BIL_510.boundaries BIL_511.boundaries BIL_512.boundaries BIL_513.boundaries BIL_514.boundaries BIL_515.boundaries BIL_516.boundaries BIL_517.boundaries BIL_519.boundaries BIL_520.boundaries BIL_521.boundaries BIL_523.boundaries BIL_524.boundaries BIL_525.boundaries BIL_526.boundaries BIL_527.boundaries BIL_529.boundaries BIL_530.boundaries BIL_531.boundaries BIL_532.boundaries BIL_533.boundaries BIL_534.boundaries BIL_537.boundaries BIL_538.boundaries BIL_539.boundaries BIL_540.boundaries BIL_541.boundaries BIL_542.boundaries BIL_543.boundaries BIL_545.boundaries
+- NOTE: After merging old boundaries files with new boundaries files and removing M82 samples (bins extend to CHR termini)
+- STARTED: 'at 02:05:59 on Mon Dec 08, 2014'
+- WORKING DIR: /Users/mfc/Dropbox/lab/tomato/bils/re-seq/hmm-results/boundaries-fixed
+- SCRIPT DIR:
+    ABSOLUTE: /Users/mfc/git.repos/detect-boundaries
+    RELATIVE: /Users/mfc/git.repos/detect-boundaries/
+- ARCHIVE VERSION: Log::Reproducible 0.12.1-TRIAL
+- PERL:
+    - VERSION: v5.20.0
+    - PATH: /Users/mfc/perl5/perlbrew/perls/perl-5.20.0/bin/perl
+    - INC:
+        - /usr/local/Cellar/vcftools/0.1.12a-1/lib/perl5/site_perl
+        - /Users/mfc/perl5/perlbrew/perls/perl-5.20.0/lib/site_perl/5.20.0/darwin-2level
+        - /Users/mfc/perl5/perlbrew/perls/perl-5.20.0/lib/site_perl/5.20.0
+        - /Users/mfc/perl5/perlbrew/perls/perl-5.20.0/lib/5.20.0/darwin-2level
+        - /Users/mfc/perl5/perlbrew/perls/perl-5.20.0/lib/5.20.0
+        - .
+    - MODULES:
+        - Carp 1.3301
+        - Exporter 5.70
+        - Fatal 2.23
+        - File::Basename 2.85
+        - IPC::System::Simple 1.25
+        - List::Util 1.38
+        - POSIX 1.38_03
+        - PerlIO 1.09
+        - Scalar::Util 1.38
+        - Tie::Hash 1.05
+        - Tie::RefHash 1.39
+        - UNIVERSAL 1.11
+        - autodie 2.23
+        - constant 1.31
+        - feature 1.36
+        - mro 1.16
+        - re 0.26
+        - version 0.9908
+        - warnings 1.23
+- GIT:
+    - BRANCH: feature/compare-boundaries
+    - COMMIT: 493f522 Report boundaries for union of two bins
+    - STATUS:
+        - '?? BIL-test/'
+        - '?? cody-marc-maps/'
+        - '?? example.fa'
+        - '?? flank-mids.pl'
+        - '?? get-genotypes-for-bins-using-snps.pl'
+        - '?? out.test2'
+        - '?? parental_calc'
+        - '?? playing-with-BILs/'
+        - '?? plot-boundaries.R'
+        - '?? props.summary'
+        - '?? test'
+        - '?? test-out'
+    - DIFF (STAGED): ''
+    - DIFF: ''
+- ENV:
+    Apple_PubSub_Socket_Render: /private/tmp/com.apple.launchd.fhfhehJttc/Render
+    CLICOLOR: 1
+    GIT_PS1_SHOWCOLORHINTS: 1
+    GIT_PS1_SHOWDIRTYSTATE: 1
+    GIT_PS1_SHOWSTASHSTATE: 1
+    GIT_PS1_SHOWUNTRACKEDFILES: 1
+    HOME: /Users/mfc
+    LANG: en_US.UTF-8
+    LESS: ' -R '
+    LESSOPEN: '| src-hilite-lesspipe.sh %s'
+    LOGNAME: mfc
+    LSCOLORS: GxFxCxDxBxegedabagaced
+    MANPATH: /Users/mfc/perl5/perlbrew/perls/5.20.0/man:/usr/local/share/man:/usr/share/man:/Applications/Xcode.app/Contents/Developer/usr/share/man:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/share/man
+    OLDPWD: /Users/mfc/Dropbox/lab/tomato/bils/re-seq/hmm-results/boundaries-fixed
+    PATH: /usr/local/var/rbenv/shims:/Users/mfc/perl5/perlbrew/bin:/Users/mfc/perl5/perlbrew/perls/5.20.0/bin:/Users/mfc/installs/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+    PERL5LIB: /usr/local/Cellar/vcftools/0.1.12a-1/lib/perl5/site_perl
+    PERLBREW_BASHRC_VERSION: 0.69
+    PERLBREW_HOME: /Users/mfc/.perlbrew
+    PERLBREW_MANPATH: /Users/mfc/perl5/perlbrew/perls/5.20.0/man
+    PERLBREW_PATH: /Users/mfc/perl5/perlbrew/bin:/Users/mfc/perl5/perlbrew/perls/5.20.0/bin
+    PERLBREW_PERL: 5.20.0
+    PERLBREW_ROOT: /Users/mfc/perl5/perlbrew
+    PERLBREW_VERSION: 0.69
+    PROMPT_COMMAND: '__git_ps1 "\D{%d%a%H:%M}|\W${VIRTUAL_ENV:+ [$Bold_Yellow`basename $VIRTUAL_ENV`$Color_Off]}" "\\\$ "'
+    PWD: /Users/mfc/Dropbox/lab/tomato/bils/re-seq/hmm-results/boundaries-fixed
+    RBENV_ROOT: /usr/local/var/rbenv
+    SHELL: /bin/bash
+    SHLVL: 1
+    SSH_AUTH_SOCK: /private/tmp/com.apple.launchd.cbHrHDLSj3/Listeners
+    TERM: xterm-256color
+    TERM_PROGRAM: Apple_Terminal
+    TERM_PROGRAM_VERSION: 343
+    TERM_SESSION_ID: A967E924-4D6A-4D76-BD12-CFDFE82036CD
+    TMPDIR: /var/folders/jq/cpjnfbld58vbtzdwvnb00jpc0000gn/T/
+    USER: mfc
+    VIRTUALENVWRAPPER_HOOK_DIR: /Users/mfc/.virtualenvs
+    VIRTUALENVWRAPPER_PROJECT_FILENAME: .project
+    VIRTUALENVWRAPPER_SCRIPT: /usr/local/bin/virtualenvwrapper.sh
+    WORKON_HOME: /Users/mfc/.virtualenvs
+    XPC_FLAGS: 0x0
+    XPC_SERVICE_NAME: 0
+    _: /Users/mfc/git.repos/detect-boundaries/get-genotypes-for-bins.pl
+    __CF_USER_TEXT_ENCODING: 0x1F5:0x0:0x0
+################################################################################
+###### IF EXIT CODE IS MISSING, SCRIPT WAS CANCELLED OR IS STILL RUNNING! ######
+################## TYPICALLY: 0 == SUCCESS AND 255 == FAILURE ##################
+################################################################################
+- EXITCODE: 0
+- FINISHED: at 02:06:03 on Mon Dec 08, 2014
+- ELAPSED: 00:00:04
