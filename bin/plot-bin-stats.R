@@ -62,35 +62,17 @@ ggplot(data = counts.df) +
 ggsave("figures/introgressions-per-sample.png", width = 5, height = 7.5)
 
 
-ggplot(data=lengths.df) +
-  geom_density(aes(x = par1)) +
-  geom_density(aes(x = par2))
-
-ggplot(data=lengths.df) +
-  geom_histogram(aes(x = 100 * (par2 + het) / par1), binwidth = 2) +
-  xlab("% of genome comprised of introgressions") +
-  ylab("# of BILs")
-
-# BAD DENOMINATOR
-ggplot(data=lengths.df) +
-  geom_histogram(aes(x = 100 * (par2 + het) / par1), binwidth = 0.15, color = 'black', fill = 'skyblue') +
+# Plot percent Solanum pennelli in genome
+ggplot(data = lengths.df) +
+  geom_histogram(aes(x = 100 * (par2 + het) / (par1 + het + par2)),
+                 binwidth = 0.15,
+                 color = 'black',
+                 fill = 'skyblue') +
   xlab("% of S. penn. in genome") +
   ylab("# of BILs") +
   scale_x_log10()
 
-# THIS ONE?
-ggplot(data=lengths.df) +
-  geom_histogram(aes(x = 100 * (par2 + het) / (par1 + het + par2)), binwidth = 0.15, color = 'black', fill = 'skyblue') +
-  xlab("% of S. penn. in genome") +
-  ylab("# of BILs") +
-  scale_x_log10()
-
-# WITHOUT HET
-ggplot(data=lengths.df) +
-  geom_histogram(aes(x = 100 * par2 / (par1 + het + par2)), binwidth = 0.15, color = 'black', fill = 'skyblue') +
-  xlab("% of S. penn. in genome") +
-  ylab("# of BILs") +
-  scale_x_log10()
+ggsave("figures/percent-pennelli.png", width = 5, height = 7.5)
 
 
 #####
