@@ -1,0 +1,108 @@
+---
+- COMMAND: impute-NAs-at-chromosome-ends.pl bin-genotypes.BILs.2014-12-07
+- NOTE: After merging old boundaries files with new boundaries files and removing M82 samples (bins extend to CHR termini)
+- STARTED: 'at 02:06:04 on Mon Dec 08, 2014'
+- WORKING DIR: /Users/mfc/Dropbox/lab/tomato/bils/re-seq/hmm-results/boundaries-fixed
+- SCRIPT DIR:
+    ABSOLUTE: /Users/mfc/git.repos/detect-boundaries
+    RELATIVE: /Users/mfc/git.repos/detect-boundaries/
+- ARCHIVE VERSION: Log::Reproducible 0.12.1-TRIAL
+- PERL:
+    - VERSION: v5.20.0
+    - PATH: /Users/mfc/perl5/perlbrew/perls/perl-5.20.0/bin/perl
+    - INC:
+        - /usr/local/Cellar/vcftools/0.1.12a-1/lib/perl5/site_perl
+        - /Users/mfc/perl5/perlbrew/perls/perl-5.20.0/lib/site_perl/5.20.0/darwin-2level
+        - /Users/mfc/perl5/perlbrew/perls/perl-5.20.0/lib/site_perl/5.20.0
+        - /Users/mfc/perl5/perlbrew/perls/perl-5.20.0/lib/5.20.0/darwin-2level
+        - /Users/mfc/perl5/perlbrew/perls/perl-5.20.0/lib/5.20.0
+        - .
+    - MODULES:
+        - Carp 1.3301
+        - Exporter 5.70
+        - Fatal 2.23
+        - IPC::System::Simple 1.25
+        - List::MoreUtils 0.33
+        - List::Util 1.38
+        - POSIX 1.38_03
+        - PerlIO 1.09
+        - Scalar::Util 1.38
+        - Tie::Hash 1.05
+        - Tie::RefHash 1.39
+        - UNIVERSAL 1.11
+        - autodie 2.23
+        - constant 1.31
+        - feature 1.36
+        - mro 1.16
+        - re 0.26
+        - version 0.9908
+        - warnings 1.23
+- GIT:
+    - BRANCH: feature/compare-boundaries
+    - COMMIT: 493f522 Report boundaries for union of two bins
+    - STATUS:
+        - '?? BIL-test/'
+        - '?? cody-marc-maps/'
+        - '?? example.fa'
+        - '?? flank-mids.pl'
+        - '?? get-genotypes-for-bins-using-snps.pl'
+        - '?? out.test2'
+        - '?? parental_calc'
+        - '?? playing-with-BILs/'
+        - '?? plot-boundaries.R'
+        - '?? props.summary'
+        - '?? test'
+        - '?? test-out'
+    - DIFF (STAGED): ''
+    - DIFF: ''
+- ENV:
+    Apple_PubSub_Socket_Render: /private/tmp/com.apple.launchd.fhfhehJttc/Render
+    CLICOLOR: 1
+    GIT_PS1_SHOWCOLORHINTS: 1
+    GIT_PS1_SHOWDIRTYSTATE: 1
+    GIT_PS1_SHOWSTASHSTATE: 1
+    GIT_PS1_SHOWUNTRACKEDFILES: 1
+    HOME: /Users/mfc
+    LANG: en_US.UTF-8
+    LESS: ' -R '
+    LESSOPEN: '| src-hilite-lesspipe.sh %s'
+    LOGNAME: mfc
+    LSCOLORS: GxFxCxDxBxegedabagaced
+    MANPATH: /Users/mfc/perl5/perlbrew/perls/5.20.0/man:/usr/local/share/man:/usr/share/man:/Applications/Xcode.app/Contents/Developer/usr/share/man:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/share/man
+    OLDPWD: /Users/mfc/Dropbox/lab/tomato/bils/re-seq/hmm-results/boundaries-fixed
+    PATH: /usr/local/var/rbenv/shims:/Users/mfc/perl5/perlbrew/bin:/Users/mfc/perl5/perlbrew/perls/5.20.0/bin:/Users/mfc/installs/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+    PERL5LIB: /usr/local/Cellar/vcftools/0.1.12a-1/lib/perl5/site_perl
+    PERLBREW_BASHRC_VERSION: 0.69
+    PERLBREW_HOME: /Users/mfc/.perlbrew
+    PERLBREW_MANPATH: /Users/mfc/perl5/perlbrew/perls/5.20.0/man
+    PERLBREW_PATH: /Users/mfc/perl5/perlbrew/bin:/Users/mfc/perl5/perlbrew/perls/5.20.0/bin
+    PERLBREW_PERL: 5.20.0
+    PERLBREW_ROOT: /Users/mfc/perl5/perlbrew
+    PERLBREW_VERSION: 0.69
+    PROMPT_COMMAND: '__git_ps1 "\D{%d%a%H:%M}|\W${VIRTUAL_ENV:+ [$Bold_Yellow`basename $VIRTUAL_ENV`$Color_Off]}" "\\\$ "'
+    PWD: /Users/mfc/Dropbox/lab/tomato/bils/re-seq/hmm-results/boundaries-fixed
+    RBENV_ROOT: /usr/local/var/rbenv
+    SHELL: /bin/bash
+    SHLVL: 1
+    SSH_AUTH_SOCK: /private/tmp/com.apple.launchd.cbHrHDLSj3/Listeners
+    TERM: xterm-256color
+    TERM_PROGRAM: Apple_Terminal
+    TERM_PROGRAM_VERSION: 343
+    TERM_SESSION_ID: A967E924-4D6A-4D76-BD12-CFDFE82036CD
+    TMPDIR: /var/folders/jq/cpjnfbld58vbtzdwvnb00jpc0000gn/T/
+    USER: mfc
+    VIRTUALENVWRAPPER_HOOK_DIR: /Users/mfc/.virtualenvs
+    VIRTUALENVWRAPPER_PROJECT_FILENAME: .project
+    VIRTUALENVWRAPPER_SCRIPT: /usr/local/bin/virtualenvwrapper.sh
+    WORKON_HOME: /Users/mfc/.virtualenvs
+    XPC_FLAGS: 0x0
+    XPC_SERVICE_NAME: 0
+    _: /Users/mfc/git.repos/detect-boundaries/impute-NAs-at-chromosome-ends.pl
+    __CF_USER_TEXT_ENCODING: 0x1F5:0x0:0x0
+################################################################################
+###### IF EXIT CODE IS MISSING, SCRIPT WAS CANCELLED OR IS STILL RUNNING! ######
+################## TYPICALLY: 0 == SUCCESS AND 255 == FAILURE ##################
+################################################################################
+- EXITCODE: 0
+- FINISHED: at 02:06:08 on Mon Dec 08, 2014
+- ELAPSED: 00:00:04
