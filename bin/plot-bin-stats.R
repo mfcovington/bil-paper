@@ -83,7 +83,7 @@ PlotDistributionOfIntrogressions <- function(
       color.introgression = "orange", color.het = "black",
       plot.file = "distribution-of-introgressions.png",
       plot = TRUE, save = FALSE,
-      chr.text.size = 5, chr.text.angle = 270,
+      chr.text.size = 12, chr.text.angle = 270,
       ggtitle = "Distribution of Introgressions Across Bins", ...) {
 
   bin.geno.df$par1 <- apply(bin.geno.df, 1, function(line) sum(line == par1))
@@ -149,6 +149,10 @@ bins.genetic.file  <- "data/bins/bin-genotypes.BILs.2014-12-07.imputed-NAs.merge
 
 bins.physical <- read.table(bins.physical.file, header = T, sep = "\t")
 bins.genetic  <- read.table(bins.genetic.file, header = T, sep = "\t")
+
+# Use abbreviated chromosome IDs (e.g. 'ch01' instead of 'SL2.40ch01')
+bins.physical$chr <- sub(".*(ch\\d+)", "\\1", bins.physical$chr)
+bins.genetic$chr <- sub(".*(ch\\d+)", "\\1", bins.genetic$chr)
 
 PlotDistributionOfIntrogressions(
       bins.physical, par1 = par1, par2 = par2, color.introgression = "green",
