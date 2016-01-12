@@ -75,80 +75,88 @@ ggplot(data = lengths.df) +
 ggsave("figures/percent-pennelli.png", width = 5, height = 7.5)
 
 
-# Plot distribution of introgressions across bins (physical distance)
-bin.geno.file <- "data/bins/bin-genotypes.BILs.2014-12-07.imputed-NAs.merged-like"
-bin.geno.df <- read.table(bin.geno.file, header = TRUE, sep = "\t")
+# Plot distribution of introgressions across bins
+# using either physical or genetic distance
+PlotDistributionOfIntrogressions <- function(
+      bin.geno.df, genetic.distance = FALSE,
+      par1 = "par1", par2 = "par2",
+      color.introgression = "orange", color.het = "black",
+      plot.file = "distribution-of-introgressions.png",
+      plot = TRUE, save = FALSE,
+      chr.text.size = 5, chr.text.angle = 270,
+      ggtitle = "Distribution of Introgressions Across Bins", ...) {
 
-bin.geno.df$par1 <- apply(bin.geno.df, 1, function(line) sum(line == par1))
-bin.geno.df$het <- apply(bin.geno.df, 1, function(line) sum(line == "HET"))
-bin.geno.df$par2 <- apply(bin.geno.df, 1, function(line) sum(line == par2))
+  bin.geno.df$par1 <- apply(bin.geno.df, 1, function(line) sum(line == par1))
+  bin.geno.df$het  <- apply(bin.geno.df, 1, function(line) sum(line == "HET"))
+  bin.geno.df$par2 <- apply(bin.geno.df, 1, function(line) sum(line == par2))
 
-# added due to broken feature in ggplot 0.9.1:
-# is it still broken/required?
-max_pos <- max(bin.geno.df$bin.end)
-temp_max <- floor(max_pos / 10000000)
-max_pos_fixed <- temp_max * 10000000
-label_max <- temp_max * 10
+  if (!genetic.distance) {
+    # added due to broken feature in ggplot 0.9.1:
+    # is it still broken/required?
+    max_pos <- max(bin.geno.df$bin.end)
+    temp_max <- floor(max_pos / 10000000)
+    max_pos_fixed <- temp_max * 10000000
+    label_max <- temp_max * 10
+  }
 
-offset <- 1.05
-max_count <-  max(bin.geno.df$het + bin.geno.df$par2)
-max_lab <- (max_count %/% 10) * 10
+  offset <- 1.05
+  max_count <-  max(bin.geno.df$het + bin.geno.df$par2)
+  max_lab <- (max_count %/% 10) * 10
 
-ggplot(bin.geno.df, aes(xmin = bin.start, xmax = bin.end)) +
-  geom_rect(aes(ymin = 0, ymax = par2), fill = 'green') +
-  geom_rect(aes(ymin = par2, ymax = het + par2), fill = 'black') +
-  facet_grid(chr ~ .) +
-  theme(
-    panel.grid.minor = element_blank(),
-    panel.grid.major = element_blank()
-  ) +
-  ggtitle('Distribution of Introgressions Across Bins') +
-  scale_x_continuous(
-    'Bin position on chromosome (Mb)',
-    breaks = seq(0, max_pos_fixed, 10000000),
-    labels = seq(0, label_max,     10)
-  ) +
-  scale_y_continuous(
-    '# of BILs with introgression',
-    breaks = c(0, max_lab / 2, max_lab),
-    labels = c(0, max_lab / 2, max_lab),
-    limits = c(0, offset * max_count)
-  ) +
-  theme(strip.text.y = element_text(size = 5))
+  distribution <- ggplot(bin.geno.df, aes(xmin = bin.start, xmax = bin.end)) +
+    geom_rect(aes(ymin = 0, ymax = par2), fill = color.introgression) +
+    geom_rect(aes(ymin = par2, ymax = het + par2), fill = color.het) +
+    facet_grid(chr ~ .) +
+    theme(
+      panel.grid.minor = element_blank(),
+      panel.grid.major = element_blank()
+    ) +
+    ggtitle(ggtitle) +
+    scale_y_continuous(
+      '# of BILs with introgression',
+      breaks = c(0, max_lab / 2, max_lab),
+      labels = c(0, max_lab / 2, max_lab),
+      limits = c(0, offset * max_count)
+    ) +
+    theme(
+      strip.text.y = element_text(
+        size = chr.text.size,
+        angle = chr.text.angle
+      )
+    )
 
-ggsave("figures/distribution-of-introgressions.physical.png",
-       width = 7.5, height = 10)
+  if (genetic.distance) {
+    distribution <- distribution + xlab('Bin position on chromosome (cM)')
+  } else {
+    distribution <- distribution +
+      scale_x_continuous(
+        'Bin position on chromosome (Mb)',
+        breaks = seq(0, max_pos_fixed, 10000000),
+        labels = seq(0, label_max,     10)
+      )
+  }
+
+  if (plot)
+    print(distribution)
+
+  if (save)
+    ggsave(filename = plot.file, plot = distribution, ...)
+}
 
 
-# Plot distribution of introgressions across bins (genetic distance)
-bin.geno.file <- "data/bins/bin-genotypes.BILs.2014-12-07.imputed-NAs.merged-like.genetic-distance"
-bin.geno.df <- read.table(bin.geno.file, header = TRUE, sep = "\t")
+bins.physical.file <- "data/bins/bin-genotypes.BILs.2014-12-07.imputed-NAs.merged-like"
+bins.genetic.file  <- "data/bins/bin-genotypes.BILs.2014-12-07.imputed-NAs.merged-like.genetic-distance"
 
-bin.geno.df$par1 <- apply(bin.geno.df, 1, function(line) sum(line == par1))
-bin.geno.df$het <- apply(bin.geno.df, 1, function(line) sum(line == "HET"))
-bin.geno.df$par2 <- apply(bin.geno.df, 1, function(line) sum(line == par2))
+bins.physical <- read.table(bins.physical.file, header = T, sep = "\t")
+bins.genetic  <- read.table(bins.genetic.file, header = T, sep = "\t")
 
-offset <- 1.05
-max_count <-  max(bin.geno.df$het + bin.geno.df$par2)
-max_lab <- (max_count %/% 10) * 10
+PlotDistributionOfIntrogressions(
+      bins.physical, par1 = par1, par2 = par2, color.introgression = "green",
+      plot.file = "figures/distribution-of-introgressions.physical.png",
+      save = TRUE, plot = FALSE, width = 7.5, height = 10)
 
-ggplot(bin.geno.df, aes(xmin = bin.start, xmax = bin.end)) +
-  geom_rect(aes(ymin = 0, ymax = par2), fill = 'green') +
-  geom_rect(aes(ymin = par2, ymax = het + par2), fill = 'black') +
-  facet_grid(chr ~ .) +
-  theme(
-    panel.grid.minor = element_blank(),
-    panel.grid.major = element_blank()
-  ) +
-  ggtitle('Distribution of Introgressions Across Bins') +
-  xlab('Bin position on chromosome (cM)') +
-  scale_y_continuous(
-    '# of BILs with introgression',
-    breaks = c(0, max_lab / 2, max_lab),
-    labels = c(0, max_lab / 2, max_lab),
-    limits = c(0, offset * max_count)
-  ) +
-  theme(strip.text.y = element_text(size = 5))
-
-ggsave("figures/distribution-of-introgressions.genetic.png",
-       width = 7.5, height = 10)
+PlotDistributionOfIntrogressions(
+      bins.genetic, par1 = par1, par2 = par2, color.introgression = "green",
+      plot.file = "figures/distribution-of-introgressions.genetic.png",
+      save = TRUE, plot = FALSE, width = 7.5, height = 10,
+      genetic.distance = TRUE)
