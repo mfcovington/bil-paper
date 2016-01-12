@@ -1,170 +1,170 @@
 BORDER SIZES:
 SL2.40ch01
-  count:  60
-  min:    23
-  median: 22243
-  mean:   49543
-  max:    486610
+  count:  103
+  min:    1
+  median: 2804
+  mean:   22631
+  max:    459337
 
 SL2.40ch02
-  count:  83
-  min:    129
-  median: 14903
-  mean:   57264
-  max:    1549369
+  count:  123
+  min:    1
+  median: 5589
+  mean:   24554
+  max:    564099
 
 SL2.40ch03
-  count:  55
-  min:    657
-  median: 19197
-  mean:   51987
+  count:  100
+  min:    1
+  median: 3209
+  mean:   22379
   max:    378010
 
 SL2.40ch04
-  count:  92
-  min:    23
-  median: 20314
-  mean:   28241
+  count:  127
+  min:    1
+  median: 11803
+  mean:   19871
   max:    122399
 
 SL2.40ch05
-  count:  157
-  min:    11
-  median: 12349
-  mean:   21776
+  count:  200
+  min:    1
+  median: 9095
+  mean:   16452
   max:    233617
 
 SL2.40ch06
-  count:  86
-  min:    501
-  median: 14364
-  mean:   22184
-  max:    169090
+  count:  108
+  min:    1
+  median: 9675
+  mean:   15511
+  max:    103599
 
 SL2.40ch07
-  count:  50
-  min:    648
-  median: 17162
-  mean:   37642
-  max:    455194
+  count:  82
+  min:    1
+  median: 4598
+  mean:   17743
+  max:    242675
 
 SL2.40ch08
-  count:  69
-  min:    406
-  median: 23270
-  mean:   47150
-  max:    258541
+  count:  104
+  min:    1
+  median: 8950
+  mean:   29073
+  max:    187319
 
 SL2.40ch09
-  count:  97
-  min:    506
-  median: 12130
-  mean:   28122
-  max:    283681
+  count:  124
+  min:    1
+  median: 8271
+  mean:   20586
+  max:    254799
 
 SL2.40ch10
-  count:  98
-  min:    182
-  median: 18783
-  mean:   33764
-  max:    391237
+  count:  129
+  min:    1
+  median: 12637
+  mean:   24561
+  max:    299792
 
 SL2.40ch11
-  count:  129
-  min:    381
-  median: 20449
-  mean:   45464
+  count:  163
+  min:    1
+  median: 10603
+  mean:   35233
   max:    597300
 
 SL2.40ch12
-  count:  75
-  min:    796
-  median: 20018
-  mean:   52144
+  count:  114
+  min:    1
+  median: 7791
+  mean:   32872
   max:    822937
 
 BIN SIZES:
 SL2.40ch01
-  count:  59
-  min:    9319
-  median: 235201
-  mean:   1480197
+  count:  104
+  min:    1
+  median: 68874
+  mean:   845895
   max:    51498067
 
 SL2.40ch02
-  count:  82
-  min:    2049
-  median: 198071
-  mean:   550796
+  count:  124
+  min:    7
+  median: 92068
+  mean:   378210
   max:    14073212
 
 SL2.40ch03
-  count:  54
-  min:    583
-  median: 234641
-  mean:   1147803
+  count:  101
+  min:    7
+  median: 41285
+  mean:   619829
   max:    27247614
 
 SL2.40ch04
-  count:  91
+  count:  128
   min:    8
-  median: 142872
-  mean:   675451
+  median: 71813
+  mean:   480786
   max:    35447367
 
 SL2.40ch05
-  count:  156
+  count:  201
   min:    1
-  median: 50494
-  mean:   394888
+  median: 26740
+  mean:   307118
   max:    25851973
 
 SL2.40ch06
-  count:  85
+  count:  109
   min:    1
-  median: 115486
-  mean:   519221
+  median: 71900
+  mean:   407031
   max:    24813101
 
 SL2.40ch07
-  count:  49
+  count:  83
   min:    1
-  median: 165060
-  mean:   1293602
+  median: 35857
+  mean:   768838
   max:    33920950
 
 SL2.40ch08
-  count:  68
+  count:  105
   min:    1
-  median: 110350
-  mean:   879106
+  median: 38525
+  mean:   571514
   max:    37873408
 
 SL2.40ch09
-  count:  96
+  count:  125
   min:    1
-  median: 112327
-  mean:   676397
+  median: 71565
+  mean:   520874
   max:    24861765
 
 SL2.40ch10
-  count:  97
+  count:  130
   min:    1
-  median: 70673
-  mean:   634282
+  median: 36535
+  mean:   474353
   max:    41497386
 
 SL2.40ch11
-  count:  128
+  count:  164
   min:    1
-  median: 65114
-  mean:   371258
+  median: 39562
+  mean:   290505
   max:    24778755
 
 SL2.40ch12
-  count:  74
+  count:  115
   min:    4
-  median: 81566
-  mean:   832100
+  median: 26090
+  mean:   536858
   max:    37233050
 
