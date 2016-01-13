@@ -1,5 +1,5 @@
 # Import functions for calculating and plotting bin stats
-# From: https://github.com/mfcovington/detect-boundaries (commit d37d9a4)
+# From: https://github.com/mfcovington/detect-boundaries (commit 808620c)
 source("plot-bin-stats.R")
 
 boundaries.dir <- "data/boundaries/"
@@ -47,3 +47,9 @@ PlotDistributionOfIntrogressions(
       plot.file = "figures/distribution-of-introgressions.genetic.png",
       save = TRUE, plot = FALSE, width = 7.5, height = 10,
       genetic.distance = TRUE)
+
+
+# Plot bins per chromosome
+PlotBinsPerChromosome(
+      bins.physical, plot.file = "figures/bins-per-chromosome.png",
+      save = TRUE, plot = FALSE, width = 7.5, height = 10)
