@@ -55,21 +55,33 @@ CountAndMeasureIntrogressions <- function(boundaries.dir,
 CountAndMeasureIntrogressions(boundaries.dir, par1 = par1, par2 = par2)
 
 
-# Plot number of introgressions per sample
-max.count.introgression.combined <- max(counts.df$het + counts.df$par2)
+PlotIntrogressionsPerSample <- function (
+      counts.df, border.color = "black", fill.color = "skyblue",
+      plot.file = "introgressions-per-sample.png",
+      plot = TRUE, save = FALSE, ...) {
 
-ggplot(data = counts.df) +
-  geom_histogram(aes(x = het + par2),
-                 binwidth = 1,
-                 origin = 0.5,
-                 color = 'black',
-                 fill = 'skyblue') +
-  xlim(0, max.count.introgression.combined + 0.5) +
-  xlab("# of introgressions per sample") +
-  ylab("# of BILs")
+  max.count.introgression.combined <- max(counts.df$het + counts.df$par2)
 
-ggsave("figures/introgressions-per-sample.png", width = 5, height = 7.5)
+  introgression.histogram <- ggplot(data = counts.df) +
+    geom_histogram(aes(x = het + par2),
+                   binwidth = 1,
+                   origin = 0.5,
+                   color = border.color,
+                   fill = fill.color) +
+    xlim(0, max.count.introgression.combined + 0.5) +
+    xlab("# of introgressions per sample") +
+    ylab("# of BILs")
 
+  if (plot)
+    print(introgression.histogram)
+
+  if (save)
+    ggsave(filename = plot.file, plot = introgression.histogram, ...)
+}
+
+PlotIntrogressionsPerSample(counts.df, save = TRUE, plot = FALSE,
+                            plot.file = "figures/introgressions-per-sample.png",
+                            width = 5, height = 7.5)
 
 # Plot percent Solanum pennelli in genome
 ggplot(data = lengths.df) +
