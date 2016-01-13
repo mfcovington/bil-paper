@@ -57,6 +57,7 @@ CountAndMeasureIntrogressions(boundaries.dir, par1 = par1, par2 = par2)
 
 PlotIntrogressionsPerSample <- function (
       counts.df, border.color = "black", fill.color = "skyblue",
+      xlab = "# of introgressions per sample", ylab = "# of Samples",
       plot.file = "introgressions-per-sample.png",
       plot = TRUE, save = FALSE, ...) {
 
@@ -69,8 +70,8 @@ PlotIntrogressionsPerSample <- function (
                    color = border.color,
                    fill = fill.color) +
     xlim(0, max.count.introgression.combined + 0.5) +
-    xlab("# of introgressions per sample") +
-    ylab("# of BILs")
+    xlab(xlab) +
+    ylab(ylab)
 
   if (plot)
     print(introgression.histogram)
@@ -81,7 +82,7 @@ PlotIntrogressionsPerSample <- function (
 
 PlotIntrogressionsPerSample(counts.df, save = TRUE, plot = FALSE,
                             plot.file = "figures/introgressions-per-sample.png",
-                            width = 5, height = 7.5)
+                            ylab = "# of BILs", width = 5, height = 7.5)
 
 # Plot percent Solanum pennelli in genome
 ggplot(data = lengths.df) +
