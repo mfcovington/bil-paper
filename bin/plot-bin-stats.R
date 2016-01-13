@@ -1,6 +1,3 @@
-library(plyr)
-library(ggplot2)
-
 boundaries.dir <- "data/boundaries/"
 
 par1 <- "M82"
@@ -61,6 +58,8 @@ PlotIntrogressionsPerSample <- function (
       plot.file = "introgressions-per-sample.png",
       plot = TRUE, save = FALSE, ...) {
 
+  library(ggplot2)
+
   max.count.introgression.combined <- max(counts.df$het + counts.df$par2)
 
   introgression.histogram <- ggplot(data = counts.df) +
@@ -90,6 +89,8 @@ PlotPercentIntrogressed <- function(
       xlab = "% of introgressed genotype in genome", ylab = "# of Samples",
       plot.file = "percent-introgressed.png",
       plot = TRUE, save = FALSE, ...) {
+
+  library(ggplot2)
 
   introgression.histogram <- ggplot(data = lengths.df) +
     geom_histogram(aes(x = 100 * (par2 + het) / (par1 + het + par2)),
@@ -124,6 +125,8 @@ PlotDistributionOfIntrogressions <- function(
       plot = TRUE, save = FALSE,
       chr.text.size = 12, chr.text.angle = 270,
       ggtitle = "Distribution of Introgressions Across Bins", ...) {
+
+  library(ggplot2)
 
   bin.geno.df$par1 <- apply(bin.geno.df, 1, function(line) sum(line == par1))
   bin.geno.df$het  <- apply(bin.geno.df, 1, function(line) sum(line == "HET"))
