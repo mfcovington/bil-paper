@@ -7,43 +7,52 @@ par1 <- "M82"
 par2 <- "PEN"
 
 
-# Accumulate counts and lengths data for introgressions
-counts.df <- data.frame(id = character(),
-                        par1 = integer(),
-                        het = integer(),
-                        par2 = integer())
-lengths.df <- counts.df
+CountAndMeasureIntrogressions <- function(boundaries.dir,
+                                          par1 = "par1", par2 = "par2") {
+  # Accumulate counts and lengths data for introgressions
 
-filelist <- list.files(boundaries.dir, pattern = ".+\\.boundaries")
+  counts.df <- data.frame(id = character(),
+                          par1 = integer(),
+                          het = integer(),
+                          par2 = integer())
+  lengths.df <- counts.df
 
-for (filename in filelist) {
-  id <- sub("(^.+)\\.boundaries$", "\\1", filename)
+  filelist <- list.files(boundaries.dir, pattern = ".+\\.boundaries")
 
-  df <- read.table(paste0(boundaries.dir, filename),
-                   colClasses = c("factor", rep("numeric", 2), "factor"))
-  colnames(df) <- c("chr", "start", "end", "genotype")
-  df$length <- df$end - df$start + 1
+  for (filename in filelist) {
+    id <- sub("(^.+)\\.boundaries$", "\\1", filename)
 
-  counts <- count(df, "genotype")
-  par1_counts <- max(counts$freq[counts$genotype == par1], 0)
-  het_counts  <- max(counts$freq[counts$genotype == "HET"], 0)
-  par2_counts <- max(counts$freq[counts$genotype == par2], 0)
+    df <- read.table(paste0(boundaries.dir, filename),
+                     colClasses = c("factor", rep("numeric", 2), "factor"))
+    colnames(df) <- c("chr", "start", "end", "genotype")
+    df$length <- df$end - df$start + 1
 
-  counts.df <- rbind(counts.df, data.frame(id = id,
-                                           par1 = par1_counts,
-                                           het = het_counts,
-                                           par2 = par2_counts))
+    counts <- count(df, "genotype")
+    par1_counts <- max(counts$freq[counts$genotype == par1], 0)
+    het_counts  <- max(counts$freq[counts$genotype == "HET"], 0)
+    par2_counts <- max(counts$freq[counts$genotype == par2], 0)
 
-  lengths <- aggregate(length ~ genotype, data = df, sum)
-  par1_lengths <- max(lengths$length[lengths$genotype == par1], 0)
-  het_lengths  <- max(lengths$length[lengths$genotype == "HET"], 0)
-  par2_lengths <- max(lengths$length[lengths$genotype == par2], 0)
+    counts.df <- rbind(counts.df, data.frame(id = id,
+                                             par1 = par1_counts,
+                                             het = het_counts,
+                                             par2 = par2_counts))
 
-  lengths.df <- rbind(lengths.df, data.frame(id = id,
-                                             par1 = par1_lengths,
-                                             het = het_lengths,
-                                             par2 = par2_lengths))
+    lengths <- aggregate(length ~ genotype, data = df, sum)
+    par1_lengths <- max(lengths$length[lengths$genotype == par1], 0)
+    het_lengths  <- max(lengths$length[lengths$genotype == "HET"], 0)
+    par2_lengths <- max(lengths$length[lengths$genotype == par2], 0)
+
+    lengths.df <- rbind(lengths.df, data.frame(id = id,
+                                               par1 = par1_lengths,
+                                               het = het_lengths,
+                                               par2 = par2_lengths))
+  }
+
+  counts.df  <<- counts.df
+  lengths.df <<- lengths.df
 }
+
+CountAndMeasureIntrogressions(boundaries.dir, par1 = par1, par2 = par2)
 
 
 # Plot number of introgressions per sample
