@@ -84,17 +84,34 @@ PlotIntrogressionsPerSample(counts.df, save = TRUE, plot = FALSE,
                             plot.file = "figures/introgressions-per-sample.png",
                             ylab = "# of BILs", width = 5, height = 7.5)
 
-# Plot percent Solanum pennelli in genome
-ggplot(data = lengths.df) +
-  geom_histogram(aes(x = 100 * (par2 + het) / (par1 + het + par2)),
-                 binwidth = 0.15,
-                 color = 'black',
-                 fill = 'skyblue') +
-  xlab("% of S. penn. in genome") +
-  ylab("# of BILs") +
-  scale_x_log10()
 
-ggsave("figures/percent-pennelli.png", width = 5, height = 7.5)
+PlotPercentIntrogressed <- function(
+      counts.df, border.color = "black", fill.color = "skyblue",
+      xlab = "% of introgressed genotype in genome", ylab = "# of Samples",
+      plot.file = "percent-introgressed.png",
+      plot = TRUE, save = FALSE, ...) {
+
+  introgression.histogram <- ggplot(data = lengths.df) +
+    geom_histogram(aes(x = 100 * (par2 + het) / (par1 + het + par2)),
+                   binwidth = 0.15,
+                   color = border.color,
+                   fill = fill.color) +
+    xlab(xlab) +
+    ylab(ylab) +
+    scale_x_log10()
+
+  if (plot)
+    print(introgression.histogram)
+
+  if (save)
+    ggsave(filename = plot.file, plot = introgression.histogram, ...)
+}
+
+# Plot percent Solanum pennelli in genome
+PlotPercentIntrogressed(lengths.df, save = TRUE, plot = FALSE,
+                        plot.file = "figures/percent-pennelli.png",
+                        xlab = "% of S. penn. in genome", ylab = "# of BILs",
+                        width = 5, height = 7.5)
 
 
 # Plot distribution of introgressions across bins
