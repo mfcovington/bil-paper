@@ -1,5 +1,5 @@
 # Import functions for calculating and plotting bin stats
-# From: https://github.com/mfcovington/detect-boundaries (commit ebd62bc)
+# From: https://github.com/mfcovington/detect-boundaries (commit b5de0b6)
 source("plot-bin-stats.R")
 
 boundaries.dir <- "data/boundaries/"

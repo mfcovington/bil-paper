@@ -1,5 +1,5 @@
 # Import functions for clustering and plotting samples based on bin genotypes
-# From: https://github.com/mfcovington/detect-boundaries (commit ebd62bc)
+# From: https://github.com/mfcovington/detect-boundaries (commit b5de0b6)
 source("plot-composite-map.R")
 
 par1 <- "M82"
