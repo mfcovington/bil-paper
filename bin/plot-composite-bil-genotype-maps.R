@@ -5,6 +5,11 @@ source("plot-composite-map.R")
 par1 <- "M82"
 par2 <- "PEN"
 
+figure.num <- 4
+figure.dir <- file.path("figures", figure.num)
+if (!dir.exists(figure.dir))
+  dir.create(figure.dir)
+
 
 # Will plot bin genotypes using either physical or genetic distance
 bins.physical.file <- "data/bins/bin-genotypes.BILs.2014-12-07.imputed-NAs.merged-like"
@@ -28,12 +33,15 @@ bins.physical.m <- ClusterAndMeltBinGenotypes(bins.physical, order,
 bins.genetic.m <- ClusterAndMeltBinGenotypes(bins.genetic, order,
                                              par1 = par1, par2 = par2)
 
+plot.file <- file.path(figure.dir, "composite-map.physical.png")
 PlotCompositeMap(bins.physical.m, par1 = par1, par2 = par2, col1 = "magenta",
-                 col2 = "green", plot.file = "figures/composite-map.physical.png",
+                 col2 = "green", plot.file = plot.file,
                  save = TRUE, plot=FALSE, chr.text.size = 12, width = 10,
                  height = 7.5)
+
+plot.file <- file.path(figure.dir, "composite-map.genetic.png")
 PlotCompositeMap(bins.genetic.m, par1 = par1, par2 = par2, col1 = "magenta",
-                 col2 = "green", plot.file = "figures/composite-map.genetic.png",
+                 col2 = "green", plot.file = plot.file,
                  save = TRUE, plot=FALSE, chr.text.size = 12, width = 10,
                  height = 7.5, genetic.distance = TRUE)
 
@@ -58,14 +66,17 @@ for (chromosome in unique(bins.physical$chr)) {
   bins.genetic.m <- rbind(bins.genetic.m, bins.genetic.chr.m)
 }
 
+plot.file <- file.path(figure.dir, "composite-map.physical.cluster-by-chr.png")
 PlotCompositeMap(bins.physical.m, stacked.chromosomes = TRUE,
                  par1 = par1, par2 = par2, col1 = "magenta", col2 = "green",
-                 plot.file = "figures/composite-map.physical.cluster-by-chr.png",
-                 save = TRUE, plot=FALSE, chr.text.size = 12, width = 7.5,
+                 plot.file = plot.file,
+                 save = TRUE, plot = FALSE, chr.text.size = 12, width = 7.5,
                  height = 10)
+
+plot.file <- file.path(figure.dir, "composite-map.genetic.cluster-by-chr.png")
 PlotCompositeMap(bins.genetic.m, stacked.chromosomes = TRUE,
                  par1 = par1, par2 = par2, col1 = "magenta", col2 = "green",
-                 plot.file = "figures/composite-map.genetic.cluster-by-chr.png",
-                 save = TRUE, plot=FALSE, chr.text.size = 12, width = 7.5,
+                 plot.file = plot.file,
+                 save = TRUE, plot = FALSE, chr.text.size = 12, width = 7.5,
                  height = 10, genetic.distance = TRUE)
 
