@@ -1,5 +1,5 @@
 # Import functions for calculating and plotting bin stats
-# From: https://github.com/mfcovington/detect-boundaries (commit 808620c)
+# From: https://github.com/mfcovington/detect-boundaries (commit ebd62bc)
 source("plot-bin-stats.R")
 
 boundaries.dir <- "data/boundaries/"
@@ -15,13 +15,15 @@ CountAndMeasureIntrogressions(boundaries.dir, par1 = par1, par2 = par2)
 # Plot number of introgressions per sample
 PlotIntrogressionsPerSample(counts.df, save = TRUE, plot = FALSE,
                             plot.file = "figures/introgressions-per-sample.png",
-                            ylab = "# of BILs", width = 5, height = 7.5)
+                            ggtitle = "Introgression Frequency per BIL",
+                            ylab = "Number of BILs", width = 5, height = 7.5)
 
 
 # Plot percent Solanum pennelli in genome
 PlotPercentIntrogressed(lengths.df, save = TRUE, plot = FALSE,
                         plot.file = "figures/percent-pennelli.png",
-                        xlab = "% of S. penn. in genome", ylab = "# of BILs",
+                        ggtitle = "Introgression Proportion per BIL",
+                        xlab = "Percent of S. pennellii in Genome", ylab = "Number of BILs",
                         width = 5, height = 7.5)
 
 
@@ -40,11 +42,13 @@ bins.genetic$chr <- sub(".*(ch\\d+)", "\\1", bins.genetic$chr)
 PlotDistributionOfIntrogressions(
       bins.physical, par1 = par1, par2 = par2, color.introgression = "green",
       plot.file = "figures/distribution-of-introgressions.physical.png",
+      ylab = "Number of BILs with Introgression",
       save = TRUE, plot = FALSE, width = 7.5, height = 10)
 
 PlotDistributionOfIntrogressions(
       bins.genetic, par1 = par1, par2 = par2, color.introgression = "green",
       plot.file = "figures/distribution-of-introgressions.genetic.png",
+      ylab = "Number of BILs with Introgression",
       save = TRUE, plot = FALSE, width = 7.5, height = 10,
       genetic.distance = TRUE)
 
