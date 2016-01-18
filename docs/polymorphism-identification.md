@@ -224,3 +224,23 @@ Output from `SNPfinder/classify-snps.r`:
                         3rd Qu.:50129150   T  :15738   del: 4467               3rd Qu.: 4.00
                         Max.   :65486162                                       Max.   :16.00
                                                                                NA's   :53536
+
+
+## Polymorphism Noise Reduction
+
+To reduce false positive polymorphisms, we perform a noise-reduction step. This consists of checking the genotypes of the M82 and PEN sequence alignments for each putatitve polymorphism. Since these are the same sequence alignments used for polymorphism identification, any polymorphisms that do not exhibit the expected allele for both parents of the population are rejected.
+
+Genotype parents and perform noise reduction:
+
+```sh
+$BIN/Genotype/genotype_parents+nr.pl \
+  --id1         $PAR1 \
+  --id2         $PAR2 \
+  --bam1        $BAM_DIR/${PAR1}_unreped_repeat_filtered.sorted.bam \
+  --bam2        $BAM_DIR/${PAR2}_unreped_repeat_filtered.sorted.bam \
+  --fasta       $FA \
+  --seq_list    $SEQ_LIST \
+  --out_dir     $OUT_DIR \
+  --nr_ratio    0.9 \
+  --threads     $THREADS
+```
