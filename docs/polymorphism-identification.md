@@ -244,3 +244,20 @@ $BIN/Genotype/genotype_parents+nr.pl \
   --nr_ratio    0.9 \
   --threads     $THREADS
 ```
+
+
+## Plot Parental Samples Before Noise Reduction
+
+```sh
+for ID in $PAR1 $PAR2; do
+    $BIN/Plot/genoplot_by_id.pl \
+      --id          $ID \
+      --par1        $PAR1 \
+      --par2        $PAR2 \
+      --bam         $BAM_DIR/${ID}_unreped_repeat_filtered.sorted.bam \
+      --seq_list    $SEQ_LIST \
+      --out_dir     $OUT_DIR \
+      --col_par1    magenta \
+      --col_par2    green
+done
+```
