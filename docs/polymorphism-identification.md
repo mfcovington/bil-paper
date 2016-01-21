@@ -261,3 +261,30 @@ for ID in $PAR1 $PAR2; do
       --col_par2    green
 done
 ```
+
+
+## Genotype and Plot Parental Samples After Noise Reduction
+
+```sh
+for ID in $PAR1 $PAR2; do
+    $BIN/Genotype/extract+genotype_pileups.pl \
+      --id          $ID \
+      --par1        $PAR1 \
+      --par2        $PAR2 \
+      --bam         $BAM_DIR/${ID}_unreped_repeat_filtered.sorted.bam \
+      --fasta       $FA \
+      --seq_list    $SEQ_LIST \
+      --out_dir     $OUT_DIR \
+      --threads     $THREADS
+
+    $BIN/Plot/genoplot_by_id.pl \
+      --id          $ID \
+      --par1        $PAR1 \
+      --par2        $PAR2 \
+      --bam         $BAM_DIR/${ID}_unreped_repeat_filtered.sorted.bam \
+      --seq_list    $SEQ_LIST \
+      --out_dir     $OUT_DIR \
+      --col_par1    magenta \
+      --col_par2    green
+done
+```
