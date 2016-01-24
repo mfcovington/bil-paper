@@ -321,3 +321,47 @@ $BIN/Plot/genoplot_by_id.pl \
   --col_par1    magenta \
   --col_par2    green
 ```
+
+
+## Filter Polymorphisms Based on Allele Ratios and Coverage
+
+We filter genotype data from the merged BILs to remove outliers by doing the following for each chromosome (separately):
+
+- For each polymorphism, calculate the ratio of merged BIL reads that matches the PEN allele
+- Keep data only for polymorphisms with a PEN allele ratio between the 25th and 75th percentile
+- For each polymorphism, calculate the ratio of merged BIL reads that matches neither the M82 nor the PEN allele
+- Keep data only for polymorphisms with a non-parental allele ratio less than 0.025
+
+Since a small number of positions have excessive coverage relative the rest of the genome, we keep data only for polymorphism with a maximum coverage of 2000 reads.
+
+Filter based on allele ratios and coverage in R:
+
+```r
+setwd('genotyped')
+
+prefix <- 'BILs_merged'
+suffix <- 'genotyped.nr'
+file.list <- list.files(pattern = paste(prefix, 'SL2.40ch\\d+', suffix,
+                                        sep = '.'))
+for (file in file.list){
+  if (exists('chr.genos')) rm(chr.genos)
+  if (exists('chr.genos.flt')) rm(chr.genos.flt)
+  chr.genos <- read.table(file, head = F, as.is = T, sep = "\t")
+
+  colnames(chr.genos) <- c('chr', 'pos', 'par1', 'par2', 'tot')
+  chr.genos$par2_rat <- chr.genos$par2 / chr.genos$tot
+  chr.genos$non_par <- chr.genos$tot - chr.genos$par1 - chr.genos$par2
+  chr.genos$non_par_rat <- chr.genos$non_par / chr.genos$tot
+
+  limits <- quantile(chr.genos$par2_rat, na.rm = T, probs = c(0.25, 0.75))
+  chr.genos.flt <- chr.genos[(chr.genos$par2_rat >= limits[1] &
+                   chr.genos$par2_rat <= limits[2]),]
+  chr.genos.flt <- na.omit(chr.genos.flt)
+  chr.genos.flt <- chr.genos.flt[chr.genos.flt$non_par_rat < 0.025,]
+  chr.genos.flt <- chr.genos.flt[chr.genos.flt$par1 <= 2000, ]
+  file_name <- paste(prefix, 'filtered', chr.genos.flt$chr[1], suffix,
+                     sep = '.')
+  write.table(chr.genos.flt[,1:5], file = file_name, sep = '\t',
+              row.names = F, col.names = F, quote = F)
+}
+```
