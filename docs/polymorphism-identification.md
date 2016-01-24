@@ -288,3 +288,36 @@ for ID in $PAR1 $PAR2; do
       --col_par2    green
 done
 ```
+
+
+## Merge, Genotype, and Plot BIL Data
+
+Merge all BIL sequence alignments:
+
+```sh
+samtools merge $BAM_DIR/BIL.merged.bam $BAM_DIR/BIL-SL2.40ch*-merged.bam
+```
+
+Genotype and plot merged BIL data:
+
+```sh
+$BIN/Genotype/extract+genotype_pileups.pl \
+  --id          BILs_merged \
+  --par1        $PAR1 \
+  --par2        $PAR2 \
+  --bam         $BAM_DIR/BIL.merged.bam \
+  --fasta       $FA \
+  --seq_list    $SEQ_LIST \
+  --out_dir     $OUT_DIR \
+  --threads     $THREADS
+
+$BIN/Plot/genoplot_by_id.pl \
+  --id          BILs_merged \
+  --par1        $PAR1 \
+  --par2        $PAR2 \
+  --bam         $BAM_DIR/BIL.merged.bam \
+  --seq_list    $SEQ_LIST \
+  --out_dir     $OUT_DIR \
+  --col_par1    magenta \
+  --col_par2    green
+```
