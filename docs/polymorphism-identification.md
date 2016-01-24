@@ -365,3 +365,18 @@ for (file in file.list){
               row.names = F, col.names = F, quote = F)
 }
 ```
+
+
+## Plot Merged and Filtered BIL Data
+
+```sh
+$BIN/Plot/genoplot_by_id.pl \
+  --id          BILs_merged.filtered \
+  --par1        $PAR1 \
+  --par2        $PAR2 \
+  --bam         $BAM_DIR/BIL.merged.bam \
+  --seq_list    $SEQ_LIST \
+  --out_dir     $OUT_DIR \
+  --col_par1    magenta \
+  --col_par2    green
+```
