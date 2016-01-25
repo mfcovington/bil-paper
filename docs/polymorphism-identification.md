@@ -258,7 +258,8 @@ for ID in $PAR1 $PAR2; do
       --seq_list    $SEQ_LIST \
       --out_dir     $OUT_DIR \
       --col_par1    magenta \
-      --col_par2    green
+      --col_par2    green \
+      --no_nr
 done
 ```
 
