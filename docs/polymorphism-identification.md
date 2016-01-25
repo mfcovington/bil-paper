@@ -1,6 +1,6 @@
 # Polymorphism Identification
 
-We used [SNPTools](https://github.com/mfcovington/SNPtools) v0.2.4 to identify find SNPs and INDELs between *Solanum lycopersicum* cv. M82 ('M82') and *S. pennellii* ('PEN').
+We used [SNPTools](https://github.com/mfcovington/SNPtools) v0.2.4 to identify find SNPs and INDELs between *Solanum lycopersicum* cv. M82 ('M82') and *S. pennellii* ('PEN'). SNPTools v0.2.6 was used to make current version of genotype plots. The polymorphism detection results do not differ between these two versions.
 
 
 The alignment files used were:
@@ -259,7 +259,9 @@ for ID in $PAR1 $PAR2; do
       --out_dir     $OUT_DIR \
       --col_par1    magenta \
       --col_par2    green \
-      --no_nr
+      --no_nr \
+      --chr_pat     SL2.40 \
+      --chr_sub     ''
 done
 ```
 
@@ -286,7 +288,9 @@ for ID in $PAR1 $PAR2; do
       --seq_list    $SEQ_LIST \
       --out_dir     $OUT_DIR \
       --col_par1    magenta \
-      --col_par2    green
+      --col_par2    green \
+      --chr_pat     SL2.40 \
+      --chr_sub     ''
 done
 ```
 
@@ -320,7 +324,9 @@ $BIN/Plot/genoplot_by_id.pl \
   --seq_list    $SEQ_LIST \
   --out_dir     $OUT_DIR \
   --col_par1    magenta \
-  --col_par2    green
+  --col_par2    green \
+  --chr_pat     SL2.40 \
+  --chr_sub     ''
 ```
 
 
@@ -379,5 +385,7 @@ $BIN/Plot/genoplot_by_id.pl \
   --seq_list    $SEQ_LIST \
   --out_dir     $OUT_DIR \
   --col_par1    magenta \
-  --col_par2    green
+  --col_par2    green \
+  --chr_pat     SL2.40 \
+  --chr_sub     ''
 ```
