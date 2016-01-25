@@ -265,6 +265,9 @@ for ID in $PAR1 $PAR2; do
 done
 ```
 
+![M82 (pre-noise-reduction)](../data/genoplot/M82.before_nr.png "M82 (pre-noise-reduction)")
+![PEN (pre-noise-reduction)](../data/genoplot/PEN.before_nr.png "PEN (pre-noise-reduction)")
+
 
 ## Genotype and Plot Parental Samples After Noise Reduction
 
@@ -293,6 +296,9 @@ for ID in $PAR1 $PAR2; do
       --chr_sub     ''
 done
 ```
+
+![M82 (post-noise-reduction)](../data/genoplot/M82.png "M82 (post-noise-reduction)")
+![PEN (post-noise-reduction)](../data/genoplot/PEN.png "PEN (post-noise-reduction)")
 
 
 ## Merge, Genotype, and Plot BIL Data
@@ -328,6 +334,8 @@ $BIN/Plot/genoplot_by_id.pl \
   --chr_pat     SL2.40 \
   --chr_sub     ''
 ```
+
+![BILs merged (pre-filtering)](../data/genoplot/BILs_merged.png "BILs merged (pre-filtering)")
 
 
 ## Filter Polymorphisms Based on Allele Ratios and Coverage
@@ -389,3 +397,5 @@ $BIN/Plot/genoplot_by_id.pl \
   --chr_pat     SL2.40 \
   --chr_sub     ''
 ```
+
+![BILs merged (post-filtering)](../data/genoplot/BILs_merged.filtered.png "BILs merged (post-filtering)")
