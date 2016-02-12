@@ -1,3 +1,20 @@
+<!-- MarkdownTOC -->
+
+- [Polymorphism Identification](#polymorphism-identification)
+    - [Set variables](#set-variables)
+    - [Identify polymorphisms relative to Heinz](#identify-polymorphisms-relative-to-heinz)
+    - [Filter based on reciprocal coverage](#filter-based-on-reciprocal-coverage)
+    - [Filter based on M82 vs. PEN comparison](#filter-based-on-m82-vs-pen-comparison)
+    - [Polymorphism Noise Reduction](#polymorphism-noise-reduction)
+    - [Plot Parental Samples Before Noise Reduction](#plot-parental-samples-before-noise-reduction)
+    - [Genotype and Plot Parental Samples After Noise Reduction](#genotype-and-plot-parental-samples-after-noise-reduction)
+    - [Merge, Genotype, and Plot BIL Data](#merge-genotype-and-plot-bil-data)
+    - [Filter Polymorphisms Based on Allele Ratios and Coverage](#filter-polymorphisms-based-on-allele-ratios-and-coverage)
+    - [Plot Merged and Filtered BIL Data](#plot-merged-and-filtered-bil-data)
+
+<!-- /MarkdownTOC -->
+
+
 # Polymorphism Identification
 
 We used [SNPTools](https://github.com/mfcovington/SNPtools) v0.2.4 to identify find SNPs and INDELs between *Solanum lycopersicum* cv. M82 ('M82') and *S. pennellii* ('PEN'). SNPTools v0.2.6 was used to make current version of genotype plots. The polymorphism detection results do not differ between these two versions.
