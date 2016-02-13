@@ -11,6 +11,7 @@
     - [Merge, Genotype, and Plot BIL Data](#merge-genotype-and-plot-bil-data)
     - [Filter Polymorphisms Based on Allele Ratios and Coverage](#filter-polymorphisms-based-on-allele-ratios-and-coverage)
     - [Plot Merged and Filtered BIL Data](#plot-merged-and-filtered-bil-data)
+    - [Filter Polymorphism Files Based on Positions Observed in Filtered Genotyped Files](#filter-polymorphism-files-based-on-positions-observed-in-filtered-genotyped-files)
 
 <!-- /MarkdownTOC -->
 
@@ -416,3 +417,15 @@ $BIN/Plot/genoplot_by_id.pl \
 ```
 
 ![BILs merged (post-filtering)](../data/genoplot/BILs_merged.filtered.png "BILs merged (post-filtering)")
+
+
+## Filter Polymorphism Files Based on Positions Observed in Filtered Genotyped Files
+
+Only the genotyped files were [filtered based on polymorphism allele ratios and coverage](#filter-polymorphisms-based-on-allele-ratios-and-coverage). Therefore, it is necessary to filter the polymorphism files using the same criteria. Instead of performing additional calculations, we can simply remove positions in the polymorphism files that are no longer in the filtered genotyped files.
+
+```sh
+$BIN/Other/filter-snps-based-on-genotyped-positions.pl \
+  --snp_in_dir $OUT_DIR/snp_master \
+  --snp_out_dir $OUT_DIR/snp_master \
+  $OUT_DIR/genotyped/BILs_merged.filtered.SL2.40ch*.genotyped.nr
+```
