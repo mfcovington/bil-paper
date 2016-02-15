@@ -12,6 +12,7 @@
     - [Filter Polymorphisms Based on Allele Ratios and Coverage](#filter-polymorphisms-based-on-allele-ratios-and-coverage)
     - [Plot Merged and Filtered BIL Data](#plot-merged-and-filtered-bil-data)
     - [Filter Polymorphism Files Based on Positions Observed in Filtered Genotyped Files](#filter-polymorphism-files-based-on-positions-observed-in-filtered-genotyped-files)
+    - [Plot Parental Samples After Filtering](#plot-parental-samples-after-filtering)
 
 <!-- /MarkdownTOC -->
 
@@ -429,3 +430,31 @@ $BIN/Other/filter-snps-based-on-genotyped-positions.pl \
   --snp_out_dir $OUT_DIR/snp_master \
   $OUT_DIR/genotyped/BILs_merged.filtered.SL2.40ch*.genotyped.nr
 ```
+
+
+## Plot Parental Samples After Filtering
+
+Now that the [polymorphism files have been filtered](#filter-polymorphism-files-based-on-positions-observed-in-filtered-genotyped-files), we will plot the parental samples. Instead of re-genotyping the parents, it is faster just to filter their current genotyped files using the filtered polymorphism files.
+
+```sh
+for ID in $PAR1 $PAR2; do
+    $BIN/Other/filter-genotyped-files-based-on-polymorphism-positions.pl \
+      --out $OUT_DIR \
+      --id $ID
+
+    $BIN/Plot/genoplot_by_id.pl \
+      --id          $ID.filtered \
+      --par1        $PAR1 \
+      --par2        $PAR2 \
+      --bam         $BAM_DIR/${ID}_unreped_repeat_filtered.sorted.bam \
+      --seq_list    $SEQ_LIST \
+      --out_dir     $OUT_DIR \
+      --col_par1    magenta \
+      --col_par2    green \
+      --chr_pat     SL2.40 \
+      --chr_sub     ''
+done
+```
+
+![M82 (post-filtering)](../data/genoplot/M82.filtered.png "M82 (post-filtering)")
+![PEN (post-filtering)](../data/genoplot/PEN.filtered.png "PEN (post-filtering)")
