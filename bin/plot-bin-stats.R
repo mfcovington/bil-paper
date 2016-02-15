@@ -2,6 +2,8 @@
 # From: https://github.com/mfcovington/detect-boundaries (commit b5de0b6)
 source("plot-bin-stats.R")
 
+theme_set(theme_grey(base_size = 12))
+
 boundaries.dir <- "data/boundaries/"
 
 par1 <- "M82"
@@ -18,7 +20,7 @@ CountAndMeasureIntrogressions(boundaries.dir, par1 = par1, par2 = par2)
 
 
 # Plot number of introgressions per sample
-plot.file <- file.path(figure.dir, "introgressions-per-sample.png")
+plot.file <- file.path(figure.dir, "introgressions-per-sample.pdf")
 PlotIntrogressionsPerSample(counts.df, save = TRUE, plot = FALSE,
                             plot.file = plot.file,
                             ggtitle = "Introgression Frequency per BIL",
@@ -26,7 +28,7 @@ PlotIntrogressionsPerSample(counts.df, save = TRUE, plot = FALSE,
 
 
 # Plot percent Solanum pennelli in genome
-plot.file <- file.path(figure.dir, "percent-pennelli.png")
+plot.file <- file.path(figure.dir, "percent-pennelli.pdf")
 PlotPercentIntrogressed(lengths.df, save = TRUE, plot = FALSE,
                         plot.file = plot.file,
                         ggtitle = "Introgression Proportion per BIL",
@@ -46,14 +48,14 @@ bins.genetic  <- read.table(bins.genetic.file, header = T, sep = "\t")
 bins.physical$chr <- sub(".*(ch\\d+)", "\\1", bins.physical$chr)
 bins.genetic$chr <- sub(".*(ch\\d+)", "\\1", bins.genetic$chr)
 
-plot.file <- file.path(figure.dir, "distribution-of-introgressions.physical.png")
+plot.file <- file.path(figure.dir, "distribution-of-introgressions.physical.pdf")
 PlotDistributionOfIntrogressions(
       bins.physical, par1 = par1, par2 = par2, color.introgression = "green",
       plot.file = plot.file,
       ylab = "Number of BILs with Introgression",
       save = TRUE, plot = FALSE, width = 7.5, height = 10)
 
-plot.file <- file.path(figure.dir, "distribution-of-introgressions.genetic.png")
+plot.file <- file.path(figure.dir, "distribution-of-introgressions.genetic.pdf")
 PlotDistributionOfIntrogressions(
       bins.genetic, par1 = par1, par2 = par2, color.introgression = "green",
       plot.file = plot.file,
@@ -63,7 +65,7 @@ PlotDistributionOfIntrogressions(
 
 
 # Plot bins per chromosome
-plot.file <- file.path(figure.dir, "bins-per-chromosome.png")
+plot.file <- file.path(figure.dir, "bins-per-chromosome.pdf")
 PlotBinsPerChromosome(
       bins.physical, plot.file = plot.file,
       save = TRUE, plot = FALSE, width = 7.5, height = 10)

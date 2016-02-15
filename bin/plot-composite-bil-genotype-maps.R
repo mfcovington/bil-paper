@@ -2,6 +2,8 @@
 # From: https://github.com/mfcovington/detect-boundaries (commit b5de0b6)
 source("plot-composite-map.R")
 
+theme_set(theme_grey(base_size = 12))
+
 par1 <- "M82"
 par2 <- "PEN"
 
@@ -33,13 +35,13 @@ bins.physical.m <- ClusterAndMeltBinGenotypes(bins.physical, order,
 bins.genetic.m <- ClusterAndMeltBinGenotypes(bins.genetic, order,
                                              par1 = par1, par2 = par2)
 
-plot.file <- file.path(figure.dir, "composite-map.physical.png")
+plot.file <- file.path(figure.dir, "composite-map.physical.pdf")
 PlotCompositeMap(bins.physical.m, par1 = par1, par2 = par2, col1 = "magenta",
                  col2 = "green", plot.file = plot.file,
                  save = TRUE, plot=FALSE, chr.text.size = 12, width = 10,
                  height = 7.5)
 
-plot.file <- file.path(figure.dir, "composite-map.genetic.png")
+plot.file <- file.path(figure.dir, "composite-map.genetic.pdf")
 PlotCompositeMap(bins.genetic.m, par1 = par1, par2 = par2, col1 = "magenta",
                  col2 = "green", plot.file = plot.file,
                  save = TRUE, plot=FALSE, chr.text.size = 12, width = 10,
@@ -66,14 +68,14 @@ for (chromosome in unique(bins.physical$chr)) {
   bins.genetic.m <- rbind(bins.genetic.m, bins.genetic.chr.m)
 }
 
-plot.file <- file.path(figure.dir, "composite-map.physical.cluster-by-chr.png")
+plot.file <- file.path(figure.dir, "composite-map.physical.cluster-by-chr.pdf")
 PlotCompositeMap(bins.physical.m, stacked.chromosomes = TRUE,
                  par1 = par1, par2 = par2, col1 = "magenta", col2 = "green",
                  plot.file = plot.file,
                  save = TRUE, plot = FALSE, chr.text.size = 12, width = 7.5,
                  height = 10)
 
-plot.file <- file.path(figure.dir, "composite-map.genetic.cluster-by-chr.png")
+plot.file <- file.path(figure.dir, "composite-map.genetic.cluster-by-chr.pdf")
 PlotCompositeMap(bins.genetic.m, stacked.chromosomes = TRUE,
                  par1 = par1, par2 = par2, col1 = "magenta", col2 = "green",
                  plot.file = plot.file,
