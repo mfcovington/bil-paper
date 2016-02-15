@@ -13,6 +13,7 @@
     - [Plot Merged and Filtered BIL Data](#plot-merged-and-filtered-bil-data)
     - [Filter Polymorphism Files Based on Positions Observed in Filtered Genotyped Files](#filter-polymorphism-files-based-on-positions-observed-in-filtered-genotyped-files)
     - [Plot Parental Samples After Filtering](#plot-parental-samples-after-filtering)
+    - [Plot Parental Samples After Removing Parental-Specific High-Coverage Outliers](#plot-parental-samples-after-removing-parental-specific-high-coverage-outliers)
 
 <!-- /MarkdownTOC -->
 
@@ -442,6 +443,42 @@ for ID in $PAR1 $PAR2; do
       --out $OUT_DIR \
       --id $ID
 
+    $BIN/Plot/genoplot_by_id.pl \
+      --id          $ID.filtered \
+      --par1        $PAR1 \
+      --par2        $PAR2 \
+      --bam         $BAM_DIR/${ID}_unreped_repeat_filtered.sorted.bam \
+      --seq_list    $SEQ_LIST \
+      --out_dir     $OUT_DIR \
+      --col_par1    magenta \
+      --col_par2    green \
+      --chr_pat     SL2.40 \
+      --chr_sub     ''
+
+    mv $OUT_DIR/genoplot/$ID.filtered.png $OUT_DIR/genoplot/$ID.filtered.with-outliers.png
+
+done
+```
+
+![M82 (post-filtering, with-outliers)](../data/genoplot/M82.filtered.with-outliers.png "M82 (post-filtering, with-outliers)")
+![PEN (post-filtering, with-outliers)](../data/genoplot/PEN.filtered.with-outliers.png "PEN (post-filtering, with-outliers)")
+
+
+## Plot Parental Samples After Removing Parental-Specific High-Coverage Outliers
+
+More than 99.999% of the polymorphism positions have parental genotype information from 4 to 186 reads per parent. There are 7 positions with coverage in the thousands for one or both of the parents. We remove these outliers from the filtered parental genotyped files and from the polymorphism database.
+
+```sh
+for FILE in $OUT_DIR/genotyped/M82.filtered.*.nr $OUT_DIR/genotyped/PEN.filtered.*.nr $OUT_DIR/snp_master/polyDB.*.nr; do
+    grep -v $FILE > $FILE.filtered \
+      -e $'SL2.40ch01\t1866676'  -e $'SL2.40ch02\t15236040' -e $'SL2.40ch05\t58235463' \
+      -e $'SL2.40ch05\t58235490' -e $'SL2.40ch12\t870464'   -e $'SL2.40ch12\t27506567' \
+      -e $'SL2.40ch12\t27506593'
+
+    mv $FILE.filtered $FILE
+done
+
+for ID in $PAR1 $PAR2; do
     $BIN/Plot/genoplot_by_id.pl \
       --id          $ID.filtered \
       --par1        $PAR1 \
