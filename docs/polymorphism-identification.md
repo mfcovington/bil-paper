@@ -14,6 +14,7 @@
     - [Filter Polymorphism Files Based on Positions Observed in Filtered Genotyped Files](#filter-polymorphism-files-based-on-positions-observed-in-filtered-genotyped-files)
     - [Plot Parental Samples After Filtering](#plot-parental-samples-after-filtering)
     - [Plot Parental Samples After Removing Parental-Specific High-Coverage Outliers](#plot-parental-samples-after-removing-parental-specific-high-coverage-outliers)
+    - [Genotype and Plot BIL Samples](#genotype-and-plot-bil-samples)
 
 <!-- /MarkdownTOC -->
 
@@ -495,3 +496,41 @@ done
 
 ![M82 (post-filtering)](../data/genoplot/M82.filtered.png "M82 (post-filtering)")
 ![PEN (post-filtering)](../data/genoplot/PEN.filtered.png "PEN (post-filtering)")
+
+
+## Genotype and Plot BIL Samples
+
+Now that the polymorphisms have gone through multiple types of filtering to remove noise, we can use the remaining polymorphism to genotype each individual of the BIL population. The data and plots for every BIL are included in the unabridged version of this repository; however, only BIL 009 is included as an example in the abridged version.
+
+```sh
+for ID in `perl -E '@files = @ARGV;
+                    push @ids, $_ =~ /(BIL_\d+)_Slc\.sorted\.bam/g for @files;
+                    print "@ids";' $BAM_DIR/BIL_*_Slc.sorted.bam`; do
+    echo $ID
+
+    $BIN/Genotype/extract+genotype_pileups.pl \
+      --id          $ID \
+      --par1        $PAR1 \
+      --par2        $PAR2 \
+      --bam         $BAM_DIR/${ID}_Slc.sorted.bam \
+      --fasta       $FA \
+      --seq_list    $SEQ_LIST \
+      --out_dir     $OUT_DIR \
+      --threads     $THREADS
+
+    $BIN/Plot/genoplot_by_id.pl \
+      --id          $ID \
+      --par1        $PAR1 \
+      --par2        $PAR2 \
+      --bam         $BAM_DIR/${ID}_Slc.sorted.bam \
+      --seq_list    $SEQ_LIST \
+      --out_dir     $OUT_DIR \
+      --col_par1    magenta \
+      --col_par2    green \
+      --chr_pat     SL2.40 \
+      --chr_sub     ''
+done
+```
+
+![BIL 009 Genotype Plot](../data/genoplot/BIL_009.png "BIL 009 Genotype Plot")
+
