@@ -2,6 +2,7 @@
 
 - [Plot BIL genotype and boundary data](#plot-bil-genotype-and-boundary-data)
     - [Plots from original round of sequencing](#plots-from-original-round-of-sequencing)
+    - [Plots from resequenced BIL samples](#plots-from-resequenced-bil-samples)
 
 <!-- /MarkdownTOC -->
 
@@ -20,3 +21,14 @@ Plot BIL genotype and boundary data together using the R script `bin/plot-bil-ge
 - `genotyped/XXX.genotyped.nr`
 
 Plots are created in a sub-directory called `plots-with-boundaries`.
+
+## Plots from resequenced BIL samples
+
+Plot BIL genotype and boundary data together using the R script `bin/plot-bil-genotypes-with-bins.R` with the following changes. The first two lines are replaced with:
+
+```r
+setwd("data/resequenced")
+plot.title.supplement <- "resequenced"
+```
+
+Plots are created in a sub-directory called `resequenced/plots-with-boundaries`.
