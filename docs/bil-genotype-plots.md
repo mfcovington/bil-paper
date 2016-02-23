@@ -14,14 +14,16 @@ After identifying polymorphisms, genotyping individuals from the BIL population,
 
 Some of the samples from the original round of sequencing had very low expression or had some contamination from other samples. Where possible, these samples were resequenced.
 
+
 ## Plots from original round of sequencing
 
-Plot BIL genotype and boundary data together using the R script `bin/plot-bil-genotypes-with-bins.R` as-is. This code requires that the working directory (`data`, in this case) contains the following input files (where `XXX` is the BIL sample ID:
+Plot BIL genotype and boundary data together using the R script `bin/plot-bil-genotypes-with-bins.R` as-is. This code requires that the working directory (`data`, in this case) contains the following input files (where `XXX` is the BIL sample ID):
 
 - `boundaries/XXX.boundaries`
 - `genotyped/XXX.genotyped.nr`
 
 Plots are created in a sub-directory called `plots-with-boundaries`.
+
 
 ## Plots from resequenced BIL samples
 
@@ -76,6 +78,7 @@ Plots with issues that were not resequenced, but for which there was enough info
 - BIL_476
 
     - No usable DNA for resequencing
+    - Contaminated with DNA from BIL_310 & BIL_373
 
 - BIL_534
 
